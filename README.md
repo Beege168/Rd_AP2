@@ -1,4 +1,4 @@
-# Rd_AP2 - Risk-Aware Payment System
+# Rd_AP2 
 
 Modern fintech payment platform based on Google Cloud ecosystem and X402 protocol.
 
@@ -203,16 +203,7 @@ flowchart TD
 
 ## Quick Start
 
-```bash
-# Install dependencies
-pip install -r requirements.txt
 
-# Configure environment
-cp .env.example .env
-
-# Run locally
-python -m src.main
-```
 
 ## License
 
