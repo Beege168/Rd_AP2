@@ -76,8 +76,8 @@ flowchart TD
     subgraph PaymentLayer["Payment Services"]
         subgraph X402Protocol["X402 Payment Protocol"]
             X402_PROTOCOL["X402 Protocol"]
-            HKDR_SERVICE["HKDR Stablecoin"]
             FACILITATOR["Facilitator Service"]
+            HKDR_SERVICE["hkdr stablecoint contract"]
         end
 
         subgraph BlockchainNetwork["Blockchain Network"]
@@ -86,6 +86,7 @@ flowchart TD
 
         subgraph WalletIntegration["Wallet Integration"]
             BLOCKCHAIN_WALLET["Blockchain Wallet"]
+            SIGN_MODULE["sign module"]
         end
 
         subgraph RiskCompliance["Risk & Compliance"]
@@ -140,9 +141,9 @@ flowchart TD
 
     %% Payment Service Connections
     API --> X402_PROTOCOL
-    X402_PROTOCOL --> HKDR_SERVICE
-    HKDR_SERVICE --> FACILITATOR
-    FACILITATOR --> BLOCKCHAIN_NETWORK
+    X402_PROTOCOL --> FACILITATOR
+    FACILITATOR --> HKDR_SERVICE
+    HKDR_SERVICE --> BLOCKCHAIN_NETWORK
     HKDR_SERVICE --> RISK_ENGINE
     RISK_ENGINE --> FRAUD_DETECTION
     FRAUD_DETECTION --> AML_COMPLIANCE
@@ -150,7 +151,8 @@ flowchart TD
 
     %% Wallet Connections
     U1 --> BLOCKCHAIN_WALLET
-    BLOCKCHAIN_WALLET --> X402_PROTOCOL
+    BLOCKCHAIN_WALLET --> SIGN_MODULE
+    SIGN_MODULE --> X402_PROTOCOL
 
     API --> SQL_MAIN
     API --> FIRESTORE
